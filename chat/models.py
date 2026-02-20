@@ -1,6 +1,7 @@
 from django.db import models
 from django.db.models import QuerySet
 from patients.models import Patient, CustomUser
+from django.db.models.manager import RelatedManager
 
 
 class ChatRoom(models.Model):
@@ -13,6 +14,8 @@ class ChatRoom(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     last_message_at = models.DateTimeField(null=True, blank=True)
+    
+    messages: RelatedManager['Message']
 
     class Meta:
         verbose_name_plural = 'Chat Rooms'

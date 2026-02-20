@@ -1,12 +1,14 @@
 # Core views for auth and homepage
 from django.shortcuts import render, redirect
+from patients.models import CustomUser
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.http import require_http_methods
 from django.contrib.auth import get_user_model
 from patients.forms import CustomUserCreationForm
+from patients.models import CustomUser
 
-User = get_user_model()
+User = CustomUser
 
 
 def home(request):
@@ -55,6 +57,7 @@ def user_login(request):
             login(request, user)
             
             # Redirect based on user role
+            user = CustomUser.objects.get(pk=user.pk)
             if user.role == 'patient':
                 return redirect('patient_dashboard')
             elif user.role == 'doctor':

@@ -40,7 +40,7 @@ class CustomUser(AbstractUser):
         ordering = ['-created_at']
 
     def __str__(self):
-        return f"{self.get_full_name()} ({self.get_role_display()})"
+        return f"{self.get_full_name()} ({self.role})"
 
 
 class Patient(models.Model):
@@ -73,7 +73,7 @@ class PatientReview(models.Model):
     """Patient reviews for doctors"""
     patient = models.ForeignKey(Patient, on_delete=models.CASCADE, related_name='doctor_reviews')
     doctor = models.ForeignKey('doctors.Doctor', on_delete=models.CASCADE, related_name='reviews')
-    rating = models.IntegerField(choices=[(i, i) for i in range(1, 6)])  # 1-5 rating
+    rating = models.IntegerField(choices=[(i, str(i)) for i in range(1, 6)])  # 1-5 rating
     review_text = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
