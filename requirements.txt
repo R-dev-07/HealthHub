@@ -1,0 +1,17 @@
+Django==4.2
+djangorestframework==3.14.0
+django-environ==0.10.0
+pillow==10.0.0
+django-widget-tweaks==1.5.0
+mailtrap==2.2.0
+xhtml2pdf==0.2.15
+python-decouple==3.8
+channels==4.0.0
+daphne==4.0.0
+django-debug-toolbar==4.1.0
+requests==2.31.0
+celery==5.3.1
+redis==5.0.0
+psycopg2-binary==2.9.6
+gunicorn==21.2.0
+python-dotenv==1.0.0

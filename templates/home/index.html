@@ -1,0 +1,141 @@
+{% extends 'base/base.html' %}
+
+{% block title %}Home - HealthHub{% endblock %}
+
+{% block content %}
+<div class="jumbotron bg-light py-5">
+    <div class="container">
+        <h1 class="display-4">Welcome to HealthHub</h1>
+        <p class="lead">Your Complete Health Management Platform</p>
+        <hr class="my-4">
+        <p>Connect with hospitals, doctors, and pharmacies in one place.</p>
+        
+        {% if not user.is_authenticated %}
+            <div class="mt-4">
+                <a class="btn btn-primary btn-lg me-2" href="{% url 'register' %}" role="button">
+                    <i class="fas fa-user-plus"></i> Register Now
+                </a>
+                <a class="btn btn-secondary btn-lg" href="{% url 'login' %}" role="button">
+                    <i class="fas fa-sign-in-alt"></i> Login
+                </a>
+            </div>
+        {% endif %}
+    </div>
+</div>
+
+<div class="container my-5">
+    <div class="row">
+        <div class="col-md-4 mb-4">
+            <div class="card h-100">
+                <div class="card-body text-center">
+                    <i class="fas fa-hospital fa-3x text-primary mb-3"></i>
+                    <h5 class="card-title">Find Hospitals</h5>
+                    <p class="card-text">Search and connect with hospitals near you.</p>
+                    <a href="{% url 'hospital_list' %}" class="btn btn-primary btn-sm">Explore</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 mb-4">
+            <div class="card h-100">
+                <div class="card-body text-center">
+                    <i class="fas fa-user-md fa-3x text-success mb-3"></i>
+                    <h5 class="card-title">Book Doctors</h5>
+                    <p class="card-text">Schedule appointments with qualified doctors.</p>
+                    <a href="{% url 'search_doctors' %}" class="btn btn-success btn-sm">Search</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 mb-4">
+            <div class="card h-100">
+                <div class="card-body text-center">
+                    <i class="fas fa-flask fa-3x text-info mb-3"></i>
+                    <h5 class="card-title">Lab Tests</h5>
+                    <p class="card-text">Order laboratory tests from home.</p>
+                    <a href="{% url 'labs:tests' %}" class="btn btn-info btn-sm">View Tests</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-4">
+        <div class="col-md-4 mb-4">
+            <div class="card h-100">
+                <div class="card-body text-center">
+                    <i class="fas fa-pills fa-3x text-warning mb-3"></i>
+                    <h5 class="card-title">Buy Medicine</h5>
+                    <p class="card-text">Purchase medicines online with delivery.</p>
+                    <a href="{% url 'pharmacy:medicine_list' %}" class="btn btn-warning btn-sm">Shop Now</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 mb-4">
+            <div class="card h-100">
+                <div class="card-body text-center">
+                    <i class="fas fa-comments fa-3x text-secondary mb-3"></i>
+                    <h5 class="card-title">Chat with Doctors</h5>
+                    <p class="card-text">Real-time messaging with your doctors.</p>
+                    {% if user.is_authenticated %}
+                        <a href="{% url 'chat:chat_list' %}" class="btn btn-secondary btn-sm">Open Chat</a>
+                    {% else %}
+                        <a href="{% url 'login' %}" class="btn btn-secondary btn-sm">Login to Chat</a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 mb-4">
+            <div class="card h-100">
+                <div class="card-body text-center">
+                    <i class="fas fa-credit-card fa-3x text-danger mb-3"></i>
+                    <h5 class="card-title">Secure Payment</h5>
+                    <p class="card-text">Safe and easy payment gateway.</p>
+                    <a href="#" class="btn btn-danger btn-sm">Learn More</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="bg-light py-5 mt-5">
+    <div class="container">
+        <h2 class="text-center mb-4">Why Choose HealthHub?</h2>
+        <div class="row">
+            <div class="col-md-6 mb-3">
+                <div class="d-flex">
+                    <div><i class="fas fa-check-circle text-success fa-2x me-3"></i></div>
+                    <div>
+                        <h5>Comprehensive Services</h5>
+                        <p>From doctor consultations to lab tests and medicine delivery - all in one platform.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 mb-3">
+                <div class="d-flex">
+                    <div><i class="fas fa-check-circle text-success fa-2x me-3"></i></div>
+                    <div>
+                        <h5>Secure & Confidential</h5>
+                        <p>Your health data is encrypted and protected with industry-standard security.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 mb-3">
+                <div class="d-flex">
+                    <div><i class="fas fa-check-circle text-success fa-2x me-3"></i></div>
+                    <div>
+                        <h5>24/7 Availability</h5>
+                        <p>Access our platform anytime, anywhere with 24/7 customer support.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 mb-3">
+                <div class="d-flex">
+                    <div><i class="fas fa-check-circle text-success fa-2x me-3"></i></div>
+                    <div>
+                        <h5>Easy Appointment Booking</h5>
+                        <p>Book appointments in seconds with your preferred doctors and hospitals.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
